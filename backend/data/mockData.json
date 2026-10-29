@@ -1,0 +1,109 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Fresh Hilsa (Ilish)",
+      "category": "Saltwater",
+      "price": 350,
+      "stock": 25,
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400",
+      "description": "Premium Hilsa fish, freshly caught from the Bay of Bengal. Known for its rich, oily texture and distinctive taste.",
+      "freshness": "Caught Today",
+      "quantity_unit": "per kg",
+      "rating": 4.8,
+      "reviews": 156
+    },
+    {
+      "id": 2,
+      "name": "Rohu Fish",
+      "category": "Freshwater",
+      "price": 200,
+      "stock": 50,
+      "image": "https://images.unsplash.com/photo-1534043464124-3fd1c4f5c0e5?w=400",
+      "description": "Farm-fresh Rohu, a staple in Indian households. Perfect for curries, fries, and traditional recipes.",
+      "freshness": "Farm Fresh",
+      "quantity_unit": "per kg",
+      "rating": 4.5,
+      "reviews": 230
+    },
+    {
+      "id": 3,
+      "name": "Catla Fish",
+      "category": "Freshwater",
+      "price": 280,
+      "stock": 30,
+      "image": "https://images.unsplash.com/photo-1510130113-5475d1848d46?w=400",
+      "description": "Large Catla fish with tender white flesh. Excellent for Bengali-style fish curry and celebrations.",
+      "freshness": "Morning Catch",
+      "quantity_unit": "per kg",
+      "rating": 4.6,
+      "reviews": 98
+    },
+    {
+      "id": 4,
+      "name": "Silver Pomfret",
+      "category": "Saltwater",
+      "price": 450,
+      "stock": 15,
+      "image": "https://images.unsplash.com/photo-1579164380929-e42a3f2c6a6e?w=400",
+      "description": "Premium Silver Pomfret, a delicacy loved across India. Best for frying, grilling, or steaming.",
+      "freshness": "Caught Today",
+      "quantity_unit": "per kg",
+      "rating": 4.9,
+      "reviews": 189
+    },
+    {
+      "id": 5,
+      "name": "Indian Mackerel (Bangda)",
+      "category": "Saltwater",
+      "price": 320,
+      "stock": 40,
+      "image": "https://images.unsplash.com/photo-1498654200943-1088dd4438ae?w=400",
+      "description": "Fresh Indian Mackerel rich in Omega-3. Perfect for coastal-style curries and fry preparations.",
+      "freshness": "Ice Fresh",
+      "quantity_unit": "per kg",
+      "rating": 4.4,
+      "reviews": 145
+    },
+    {
+      "id": 6,
+      "name": "Tiger Prawns",
+      "category": "Shellfish",
+      "price": 600,
+      "stock": 20,
+      "image": "https://images.unsplash.com/photo-1565680018093-ebb6505b4035?w=400",
+      "description": "Jumbo Tiger Prawns, cleaned and deveined. Perfect for biryanis, curries, and grilled preparations.",
+      "freshness": "Farm Fresh",
+      "quantity_unit": "per kg",
+      "rating": 4.7,
+      "reviews": 210
+    },
+    {
+      "id": 7,
+      "name": "Surmai (King Fish)",
+      "category": "Saltwater",
+      "price": 550,
+      "stock": 18,
+      "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400",
+      "description": "Fresh Surmai steaks, a favourite across western India. Firm texture, ideal for frying and tandoor.",
+      "freshness": "Caught Today",
+      "quantity_unit": "per kg",
+      "rating": 4.8,
+      "reviews": 175
+    },
+    {
+      "id": 8,
+      "name": "Bombay Duck (Bombil)",
+      "category": "Saltwater",
+      "price": 250,
+      "stock": 35,
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+      "description": "Soft and tender Bombay Duck, a Mumbai street-food legend. Best enjoyed crispy fried with green chutney.",
+      "freshness": "Ice Fresh",
+      "quantity_unit": "per kg",
+      "rating": 4.3,
+      "reviews": 120
+    }
+  ],
+  "categories": ["Saltwater", "Freshwater", "Shellfish"]
+}
