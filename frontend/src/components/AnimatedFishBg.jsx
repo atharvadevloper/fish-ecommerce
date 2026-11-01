@@ -280,9 +280,6 @@ export default function AnimatedFishBg() {
     let last = performance.now();
     let time = 0;
     const pt = { x: 0, y: 0, tx: 1, ty: 0 };
-    let scrolling = false;
-    let scrollTimer = 0;
-    let frameCount = 0;
     const isMobile = vw < 600;
 
     const setup = () => {
@@ -324,6 +321,8 @@ export default function AnimatedFishBg() {
       st.sizeScale = clamp(Math.min(w, h) / 900, 0.6, 1.15);
     };
 
+    let frozenOnMobile = false;
+
     const frame = (now) => {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
@@ -345,11 +344,7 @@ export default function AnimatedFishBg() {
         st.head += v * dt;
         const fastness = 1 - k;
 
-        /* On mobile during scroll, render every 3rd frame to save GPU */
-        frameCount++;
-        const shouldRender = visible && !(isMobile && scrolling && frameCount % 3 !== 0);
-
-        if (shouldRender) {
+        if (visible) {
           ctx.clearRect(0, 0, st.w, st.h);
           for (let i = 0; i < fish.length; i++) {
             const f = fish[i];
@@ -376,6 +371,14 @@ export default function AnimatedFishBg() {
           }
         }
       }
+      /* On mobile: render until lead-in finishes, then freeze */
+      if (isMobile && path && st.head > path.sE2) {
+        if (!frozenOnMobile) {
+          frozenOnMobile = true;
+          /* One final full render then stop RAF */
+        }
+        return; /* Stop animation loop on mobile */
+      }
       raf = requestAnimationFrame(frame);
     };
 
@@ -400,21 +403,11 @@ export default function AnimatedFishBg() {
       io.observe(canvas);
     }
 
-    /* ---- Scroll-aware: throttle rendering during fast scroll ---- */
-    const onScroll = () => {
-      scrolling = true;
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => { scrolling = false; }, 150);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
     return () => {
       cancelAnimationFrame(raf);
       if (ro) ro.disconnect();
       else window.removeEventListener('resize', setup);
       if (io) io.disconnect();
-      window.removeEventListener('scroll', onScroll);
-      clearTimeout(scrollTimer);
     };
   }, []);
 
