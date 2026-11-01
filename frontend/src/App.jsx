@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import useScrollReveal from './hooks/useScrollReveal'
 import './App.css'
+import './auth-admin.css'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import ProductList from './components/ProductList'
@@ -9,6 +10,9 @@ import Footer from './components/Footer'
 import ShopByCollection from './components/ShopByCollection'
 import BestSellers from './components/BestSellers'
 import FeaturedCombos from './components/FeaturedCombos'
+import Login from './components/Login'
+import Register from './components/Register'
+import AdminDashboard from './components/AdminDashboard'
 
 function App() {
   const [products, setProducts] = useState([])
@@ -22,6 +26,41 @@ function App() {
   const scrollTimer = useRef(null)
   const shippingRef = useScrollReveal({ threshold: 0.1 })
   const shippingCardsRef = useScrollReveal({ threshold: 0.1 })
+
+  // Auth state
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
+
+  // Restore auth from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedToken = localStorage.getItem('akua_token')
+      const savedUser = localStorage.getItem('akua_user')
+      if (savedToken && savedUser) {
+        setToken(savedToken)
+        setUser(JSON.parse(savedUser))
+      }
+    } catch (e) {}
+  }, [])
+
+  const handleLogin = (userData, tokenData) => {
+    setUser(userData)
+    setToken(tokenData)
+    // Redirect admin to admin dashboard, regular user to home
+    if (userData.role === 'admin') {
+      setActivePage('admin')
+    } else {
+      setActivePage('home')
+    }
+  }
+
+  const handleLogout = () => {
+    setUser(null)
+    setToken(null)
+    localStorage.removeItem('akua_token')
+    localStorage.removeItem('akua_user')
+    setActivePage('home')
+  }
 
   // Bottom nav fade on scroll — mobile only
   useEffect(() => {
@@ -107,6 +146,11 @@ function App() {
     setActivePage(page)
   }
 
+  // If on admin page and user is admin, show admin dashboard
+  if (activePage === 'admin' && user?.role === 'admin') {
+    return <AdminDashboard onLogout={handleLogout} />
+  }
+
   return (
     <div className={`app${navHidden ? ' nav-hidden' : ''}`}>
       <Header
@@ -114,6 +158,8 @@ function App() {
         onCartClick={() => setActivePage(activePage === 'cart' ? 'home' : 'cart')}
         onNavClick={handleNavClick}
         activePage={activePage}
+        user={user}
+        onLogout={handleLogout}
       />
       <main className="main-wrapper">
         {activePage === 'home' && <Hero />}
@@ -185,6 +231,22 @@ function App() {
                 </div>
               </div>
             </div>
+          </div>
+        )}
+        {activePage === 'login' && (
+          <div className="main-content">
+            <Login
+              onLogin={handleLogin}
+              onSwitchToRegister={() => setActivePage('register')}
+            />
+          </div>
+        )}
+        {activePage === 'register' && (
+          <div className="main-content">
+            <Register
+              onLogin={handleLogin}
+              onSwitchToLogin={() => setActivePage('login')}
+            />
           </div>
         )}
       </main>
