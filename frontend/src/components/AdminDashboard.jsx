@@ -152,7 +152,7 @@ function ProductModal({ product, onClose, onSave }) {
         onClose()
       }
     } catch (err) {
-      console.error(err)
+      
     }
     setSaving(false)
   }
@@ -223,7 +223,6 @@ export default function AdminDashboard({ onLogout }) {
   const [bulkField, setBulkField] = useState('price')
   const [bulkValue, setBulkValue] = useState('')
   const [selectedIds, setSelectedIds] = useState([])
-  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     if (tab === 'dashboard') { loadStats(); loadOrders() }
@@ -237,7 +236,7 @@ export default function AdminDashboard({ onLogout }) {
       const res = await fetch(`${API}/api/admin/stats`, { headers: authHeaders() })
       const data = await res.json()
       setStats(data)
-    } catch (err) { console.error(err) }
+    } catch (err) {  }
   }
 
   const loadProducts = async () => {
@@ -245,7 +244,7 @@ export default function AdminDashboard({ onLogout }) {
       const res = await fetch(`${API}/api/admin/products`, { headers: authHeaders() })
       const data = await res.json()
       setProducts(data.products)
-    } catch (err) { console.error(err) }
+    } catch (err) {  }
   }
 
   const loadOrders = async () => {
@@ -253,7 +252,7 @@ export default function AdminDashboard({ onLogout }) {
       const res = await fetch(`${API}/api/admin/orders`, { headers: authHeaders() })
       const data = await res.json()
       setOrders(data.orders)
-    } catch (err) { console.error(err) }
+    } catch (err) {  }
   }
 
   const loadUsers = async () => {
@@ -261,7 +260,7 @@ export default function AdminDashboard({ onLogout }) {
       const res = await fetch(`${API}/api/admin/users`, { headers: authHeaders() })
       const data = await res.json()
       setUsers(data.users)
-    } catch (err) { console.error(err) }
+    } catch (err) {  }
   }
 
   const deleteProduct = async (id) => {
@@ -367,8 +366,6 @@ export default function AdminDashboard({ onLogout }) {
               <input
                 type="text"
                 placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <div className="ad-topbar-avatar">

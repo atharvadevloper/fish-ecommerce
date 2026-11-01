@@ -65,15 +65,3 @@ export default function useScrollReveal({
 
   return ref
 }
-
-/**
- * useScrollRevealChildren — reveals child elements with stagger.
- * Adds 'revealed' to the container; children use CSS transition-delay via nth-child.
- */
-export function useScrollRevealChildren({
-  threshold = 0.1,
-  rootMargin = '0px 0px -40px 0px',
-  once = false,
-} = {}) {
-  return useScrollReveal({ threshold, rootMargin, once })
-}

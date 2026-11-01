@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, forwardRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import useScrollReveal from './hooks/useScrollReveal'
 import './App.css'
 import './auth-admin.css'
@@ -29,7 +29,7 @@ function App() {
 
   // Auth state
   const [user, setUser] = useState(null)
-  const [token, setToken] = useState(null)
+  const [, setToken] = useState(null)
 
   // Restore auth from localStorage on mount
   useEffect(() => {
@@ -103,7 +103,7 @@ function App() {
       const data = await response.json()
       setProducts(data.products)
     } catch (error) {
-      console.error('Error fetching products:', error)
+
     } finally {
       setLoading(false)
     }

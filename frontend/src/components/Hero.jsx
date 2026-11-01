@@ -12,7 +12,7 @@ export default function Hero() {
         <p className="hero-brand">Premium Fish & Aquatic Plants</p>
         <p className="hero-subheading">India's #1 Fish E-Commerce</p>
         <p className="hero-tagline">Expert Care • Quality Fish • Fair Prices</p>
-        <button className="hero-cta" onClick={() => {}}>Shop Fresh Fish</button>
+        <button className="hero-cta">Shop Fresh Fish</button>
       </div>
       <div className="scroll-indicator reveal fade-up" ref={scrollRef}>
         <div className="scroll-dot"></div>

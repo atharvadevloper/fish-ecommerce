@@ -7,6 +7,7 @@
   --radius-sm: clamp(8px, 1.5vw, 14px);
   --radius-md: clamp(14px, 2vw, 20px);
   --radius-pill: 100px;
+  --radius-lg: clamp(18px, 2.5vw, 28px);
 }
 
 html {
