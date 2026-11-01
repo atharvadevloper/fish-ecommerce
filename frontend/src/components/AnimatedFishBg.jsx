@@ -258,7 +258,7 @@ export default function AnimatedFishBg() {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const vw = window.innerWidth;
-    const count = vw < 600 ? 45 : vw < 1100 ? 90 : 130;
+    const count = vw < 600 ? 60 : vw < 1100 ? 90 : 130;
     const fish = [];
     for (let i = 0; i < count; i++) {
       const sizeN = Math.pow(Math.random(), 1.4);
@@ -285,7 +285,7 @@ export default function AnimatedFishBg() {
       const w = parent.clientWidth;
       const h = parent.clientHeight;
       if (!w || !h) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, vw < 600 ? 1.5 : 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -327,7 +327,6 @@ export default function AnimatedFishBg() {
 
       const { path, packLen, band, sizeScale } = st;
       if (path) {
-
         const lap = path.sE3 - path.sE2;
         const vFast = path.sE1 / LEAD_SECONDS;
         const vSlow = (lap / ORBIT_SECONDS) * (reduced ? 0.6 : 1);
@@ -413,9 +412,6 @@ export default function AnimatedFishBg() {
         height: '100%',
         zIndex: 1,
         pointerEvents: 'none',
-        willChange: 'transform',
-        transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
       }}
     />
   );
