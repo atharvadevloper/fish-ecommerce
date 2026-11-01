@@ -87,7 +87,9 @@ body {
   font-weight: 500;
   letter-spacing: 0.3px;
   color: #555;
-  transition: all 0.3s ease;
+  transition: color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: none;
   white-space: nowrap;
 }
@@ -125,7 +127,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 0;
 }
 .cart-icon-btn svg {
@@ -161,7 +164,7 @@ body {
   border: none;
   border-radius: 50px;
   padding: 8px 20px 8px 14px;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .user-section:hover {
   background: #333;
@@ -256,7 +259,9 @@ body {
   font-weight: 600;
   letter-spacing: 1.5px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .hero-cta:hover {
   background: transparent;
@@ -384,7 +389,9 @@ body {
   font-weight: 600;
   color: #666;
   letter-spacing: 0.5px;
-  transition: all 0.3s;
+  transition: border-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .category-tab:hover { border-color: #999; }
 .category-tab.active {
@@ -418,7 +425,9 @@ body {
   background: rgba(255, 255, 255, 0.7);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: all 0.3s;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(200, 200, 200, 0.35);
@@ -433,9 +442,9 @@ body {
   height: clamp(150px, 18vw, 220px);
   object-fit: cover;
   background: #f0f0f0;
-  transition: transform 0.5s;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.product-card:hover .product-image { transform: scale(1.05); }
+.product-card:hover .product-image { transform: scale(1.04); }
 .freshness-tag {
   position: absolute;
   top: clamp(8px, 1vw, 12px);
@@ -511,11 +520,12 @@ body {
   font-weight: 600;
   font-size: clamp(10px, 0.7vw + 2px, 13px);
   letter-spacing: 0.5px;
-  transition: all 0.3s;
+  transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   white-space: nowrap;
   flex-shrink: 0;
 }
-.add-to-cart-btn:hover { background: #333; transform: scale(1.05); }
+.add-to-cart-btn:hover { background: #333; transform: scale(1.03); }
 .add-to-cart-btn.added { background: #5cb878; }
 .add-to-cart-btn:disabled { background: #ccc; cursor: not-allowed; }
 
@@ -548,7 +558,8 @@ body {
   font-size: clamp(10px, 0.7vw + 3px, 13px);
   font-weight: 600;
   color: #555;
-  transition: all 0.3s;
+  transition: border-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .back-btn:hover { border-color: #999; color: #1a1a1a; }
 .empty-cart { text-align: center; padding: clamp(40px, 5vw, 70px) 20px; }
@@ -575,7 +586,7 @@ body {
   border-radius: var(--radius-sm);
   margin-bottom: clamp(8px, 1vw, 14px);
   background: rgba(255, 255, 255, 0.6);
-  transition: all 0.3s;
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .cart-item:hover { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); }
 .item-image img {
@@ -599,7 +610,8 @@ body {
   border-radius: 8px; cursor: pointer;
   font-weight: 700;
   font-size: clamp(12px, 0.9vw, 16px);
-  transition: all 0.3s; color: #333;
+  transition: background-color 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94); color: #333;
 }
 .item-quantity button:hover { background: #1a1a1a; color: white; }
 .item-quantity span {
@@ -622,7 +634,8 @@ body {
   border-radius: 8px; cursor: pointer;
   font-weight: 700;
   font-size: clamp(11px, 0.8vw, 14px);
-  transition: all 0.3s;
+  transition: background-color 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .remove-btn:hover { background: #d45; color: white; }
 .cart-summary {
@@ -667,7 +680,8 @@ body {
   border-radius: var(--radius-pill);
   font-size: clamp(12px, 0.9vw + 3px, 15px);
   font-weight: 700; letter-spacing: 1px;
-  cursor: pointer; transition: all 0.3s;
+  cursor: pointer; transition: background-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .checkout-btn:hover { background: #333; transform: translateY(-2px); }
 
@@ -1193,7 +1207,8 @@ body {
   font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-family: inherit;
   letter-spacing: 0.3px;
 }
@@ -1222,7 +1237,7 @@ body {
   font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-family: inherit;
   padding: 8px 4px;
 }
@@ -1240,12 +1255,13 @@ body {
   align-items: center;
   justify-content: center;
   color: #3D8578;
-  transition: all 0.25s ease;
+  transition: background-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   flex-shrink: 0;
 }
 .sc-explore:hover .sc-play-icon {
   background: rgba(61, 133, 120, 0.2);
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 /* Image side */
@@ -1342,7 +1358,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   user-select: none;
@@ -1483,13 +1500,14 @@ body {
   font-weight: 700;
   color: #1e4f47;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-family: inherit;
 }
 
 .bs-card-btn:hover {
   background: rgba(255, 255, 255, 0.35);
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 /* Mobile */
@@ -1795,7 +1813,8 @@ body {
   font-size: clamp(11px, 1vw, 13px);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-family: inherit;
   letter-spacing: 0.3px;
   white-space: nowrap;
@@ -1837,7 +1856,10 @@ body {
   font-weight: 700;
   color: #1e4f47;
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition: background-color 0.3s cubic-bezier(0.34, 1.4, 0.64, 1),
+              color 0.3s cubic-bezier(0.34, 1.4, 0.64, 1),
+              transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1),
+              box-shadow 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
   font-family: inherit;
   letter-spacing: 0.4px;
 }
@@ -1882,7 +1904,8 @@ body {
   background: transparent;
   padding: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: border-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .fc-dot:hover {
