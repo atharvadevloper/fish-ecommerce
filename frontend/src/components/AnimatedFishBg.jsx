@@ -58,8 +58,8 @@ const INNER = [
 
 const REF_TEXT_CENTER = [0.4986, 0.503];
 const MID_W = 0.3;
-const LEAD_SECONDS = 12;
-const ORBIT_SECONDS = 18;
+const LEAD_SECONDS = 8;
+const ORBIT_SECONDS = 12;
 
 const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
 
@@ -266,7 +266,7 @@ export default function AnimatedFishBg() {
         u: (i + Math.random()) / count,
         lane: Math.random() * 2 - 1,
         sizeN,
-        alpha: 0.12 + sizeN * 0.16,
+        alpha: 0.18 + sizeN * 0.22,
         phase: Math.random() * Math.PI * 2,
         beat: Math.random() * Math.PI * 2,
         beatRate: 0.85 + Math.random() * 0.3,
