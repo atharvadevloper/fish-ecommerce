@@ -280,6 +280,10 @@ export default function AnimatedFishBg() {
     let last = performance.now();
     let time = 0;
     const pt = { x: 0, y: 0, tx: 1, ty: 0 };
+    let scrolling = false;
+    let scrollTimer = 0;
+    let frameCount = 0;
+    const isMobile = vw < 600;
 
     const setup = () => {
       const w = parent.clientWidth;
@@ -327,12 +331,7 @@ export default function AnimatedFishBg() {
 
       const { path, packLen, band, sizeScale } = st;
       if (path) {
-        /* On mobile, skip rendering during fast scroll to avoid jank */
-        if (skipFrames > 0) {
-          skipFrames--;
-          raf = requestAnimationFrame(frame);
-          return;
-        }
+
         const lap = path.sE3 - path.sE2;
         const vFast = path.sE1 / LEAD_SECONDS;
         const vSlow = (lap / ORBIT_SECONDS) * (reduced ? 0.6 : 1);
@@ -346,7 +345,11 @@ export default function AnimatedFishBg() {
         st.head += v * dt;
         const fastness = 1 - k;
 
-        if (visible) {
+        /* On mobile during scroll, render every 3rd frame to save GPU */
+        frameCount++;
+        const shouldRender = visible && !(isMobile && scrolling && frameCount % 3 !== 0);
+
+        if (shouldRender) {
           ctx.clearRect(0, 0, st.w, st.h);
           for (let i = 0; i < fish.length; i++) {
             const f = fish[i];
@@ -397,15 +400,11 @@ export default function AnimatedFishBg() {
       io.observe(canvas);
     }
 
-    /* ---- Scroll-aware throttle: skip frames during fast scroll ---- */
-    let scrolling = false;
-    let scrollTimer = 0;
-    let skipFrames = 0;
+    /* ---- Scroll-aware: throttle rendering during fast scroll ---- */
     const onScroll = () => {
       scrolling = true;
-      skipFrames = 2;            // skip next 2 frames after each scroll event
       clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => { scrolling = false; skipFrames = 0; }, 120);
+      scrollTimer = setTimeout(() => { scrolling = false; }, 150);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
 
