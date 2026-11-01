@@ -258,7 +258,9 @@ export default function AnimatedFishBg() {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const vw = window.innerWidth;
-    const count = vw < 600 ? 60 : vw < 1100 ? 90 : 130;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const count = isIOS ? 25 : vw < 600 ? 60 : vw < 1100 ? 90 : 130;
     const fish = [];
     for (let i = 0; i < count; i++) {
       const sizeN = Math.pow(Math.random(), 1.4);
@@ -285,7 +287,7 @@ export default function AnimatedFishBg() {
       const w = parent.clientWidth;
       const h = parent.clientHeight;
       if (!w || !h) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, isIOS ? 1 : 2);
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
