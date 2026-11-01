@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 
-const { db, seedDatabase } = require('./db')
+const { db, seedDatabase, initDatabase } = require('./db')
 const authRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin')
 const { authenticate } = require('./middleware/auth')
@@ -12,10 +12,6 @@ const PORT = process.env.PORT || 5000
 
 app.use(cors())
 app.use(express.json())
-
-// Seed database with mock data on first run
-const mockData = require('./data/mockData.json')
-seedDatabase(mockData.products)
 
 // ===== PUBLIC ROUTES =====
 
@@ -69,11 +65,10 @@ app.post('/api/orders', (req, res) => {
       total,
     )
 
-    const insertItem = db.prepare(
-      'INSERT INTO order_items (order_id, product_id, product_name, quantity, price) VALUES (?, ?, ?, ?, ?)'
-    )
     for (const item of items) {
-      insertItem.run(orderId, item.id, item.name, item.quantity, item.price)
+      db.prepare(
+        'INSERT INTO order_items (order_id, product_id, product_name, quantity, price) VALUES (?, ?, ?, ?, ?)'
+      ).run(orderId, item.id, item.name, item.quantity, item.price)
     }
 
     res.status(201).json({
@@ -92,6 +87,20 @@ app.use('/api/auth', authRoutes)
 // ===== ADMIN ROUTES =====
 app.use('/api/admin', adminRoutes)
 
-app.listen(PORT, () => {
-  console.log(`AKUA Fish Market API running on http://localhost:${PORT}`)
+// ===== START SERVER =====
+async function start() {
+  await initDatabase()
+
+  // Seed database with mock data on first run
+  const mockData = require('./data/mockData.json')
+  seedDatabase(mockData.products)
+
+  app.listen(PORT, () => {
+    console.log(`AKUA Fish Market API running on http://localhost:${PORT}`)
+  })
+}
+
+start().catch(err => {
+  console.error('Failed to start server:', err)
+  process.exit(1)
 })
