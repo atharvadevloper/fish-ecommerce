@@ -29,7 +29,6 @@ function App() {
 
   // Auth state
   const [user, setUser] = useState(null)
-  const [, setToken] = useState(null)
 
   // Restore auth from localStorage on mount
   useEffect(() => {
@@ -37,15 +36,13 @@ function App() {
       const savedToken = localStorage.getItem('akua_token')
       const savedUser = localStorage.getItem('akua_user')
       if (savedToken && savedUser) {
-        setToken(savedToken)
         setUser(JSON.parse(savedUser))
       }
     } catch (e) {}
   }, [])
 
-  const handleLogin = (userData, tokenData) => {
+  const handleLogin = (userData) => {
     setUser(userData)
-    setToken(tokenData)
     // Redirect admin to admin dashboard, regular user to home
     if (userData.role === 'admin') {
       setActivePage('admin')
@@ -56,7 +53,6 @@ function App() {
 
   const handleLogout = () => {
     setUser(null)
-    setToken(null)
     localStorage.removeItem('akua_token')
     localStorage.removeItem('akua_user')
     setActivePage('home')
