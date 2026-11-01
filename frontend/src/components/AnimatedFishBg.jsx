@@ -280,7 +280,6 @@ export default function AnimatedFishBg() {
     let last = performance.now();
     let time = 0;
     const pt = { x: 0, y: 0, tx: 1, ty: 0 };
-    const isMobile = vw < 600;
 
     const setup = () => {
       const w = parent.clientWidth;
@@ -320,8 +319,6 @@ export default function AnimatedFishBg() {
       st.packLen = lap;
       st.sizeScale = clamp(Math.min(w, h) / 900, 0.6, 1.15);
     };
-
-    let frozenOnMobile = false;
 
     const frame = (now) => {
       const dt = Math.min((now - last) / 1000, 0.05);
@@ -371,14 +368,6 @@ export default function AnimatedFishBg() {
           }
         }
       }
-      /* On mobile: render until lead-in finishes, then freeze */
-      if (isMobile && path && st.head > path.sE2) {
-        if (!frozenOnMobile) {
-          frozenOnMobile = true;
-          /* One final full render then stop RAF */
-        }
-        return; /* Stop animation loop on mobile */
-      }
       raf = requestAnimationFrame(frame);
     };
 
@@ -425,6 +414,8 @@ export default function AnimatedFishBg() {
         zIndex: 1,
         pointerEvents: 'none',
         willChange: 'transform',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
       }}
     />
   );
